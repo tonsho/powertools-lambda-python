@@ -130,8 +130,9 @@ def test_openapi_with_custom_params():
     assert parameter.schema_.exclusiveMinimum == 0
     assert parameter.schema_.exclusiveMaximum == 100
     assert len(parameter.schema_.examples) == 1
-    assert parameter.schema_.examples[0].summary == "Example 1"
-    assert parameter.schema_.examples[0].value == 10
+    example = Example(**parameter.schema_.examples[0])
+    assert example.summary == "Example 1"
+    assert example.value == 10
 
 
 def test_openapi_with_scalar_returns():
